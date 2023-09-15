@@ -1,10 +1,10 @@
 <?php 
 
 // démarrage $_SESSION : 
-
+// echo 'patate';
 session_start();
 
-// require de la config:
+// // require de la config:
 require_once "../config.php";
 require_once "../model/mailer.php";
 require_once "../model/upload.php";
