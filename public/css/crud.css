@@ -78,6 +78,8 @@
 
 .crud-form input, .crud-form select {
     margin-bottom: 1rem;
+    border: solid 2px #04889a;
+    border-radius: 5px;
 }
 
 .crud-form, .crud-table {
