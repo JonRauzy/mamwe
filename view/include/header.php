@@ -19,7 +19,7 @@
             selector: '#mytextarea'
         });
     </script>
-
+    <script src="js/submenu.js"></script>
 
     <!-- $title est défini en haut de chaque page vue, on y met le nom de la catégory ou sous catégory pour qu'il saffiche dans l'onglet du navigateur -->
     <title>MAMWE - <?= $title ?></title> 
@@ -27,13 +27,9 @@
 </head>
 <body>
 
-
 <!-- HEADER -->
 
-
-
 <!-- NAVBAR -->  
-
 
 <!-- Affichage de la barre de navigation pour le public -->
 <div class="public-nav">
@@ -49,30 +45,38 @@
                 foreach($allSection as $section) :  
                 ?>
                 <!-- VERIFIER DB pour les noms -->
-                <a class="menu" href="?sectionId=<?= $section -> getMwIdSect() ?>"><?= $section -> getMwTitleSect() ;?></a>
+                <div class="menu_ressouces">
+                    <a class="menu" href="?sectionId=<?= $section -> getMwIdSect() ?>"><?= $section -> getMwTitleSect() ;?></a>
+             <!--       <menu id="ressource-select">
+                        <?php foreach($articleBySection as $abs):?>
+                                <li> <a href="#<?=$abs->getmwTitleArt()?>">
+                                    <?=$abs->getmwTitleArt()?></a>
+                                </li>
+                        <?php endforeach; ?>
+                    </menu>  -->
+                </div>
                 <?php
                 endforeach;
                 ?> 
+                <div class="menu_ressouces">
+                    <a href="?p=ressources">Ressources</a>
+                    <!----sous-menu ressources   ----->
+                    <menu id="ressource-select">     
+                        <?php foreach($allCategory as $category):?>
+                            <li> <a href="#<?=$category->getMwTitleCategory()?>">
+                                <?=$category->getMwTitleCategory()?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </menu>
+                </div>
                 <a href="?p=agenda">Agenda</a>
                 <a href="?p=contact">Contact</a>
-                <a href="?p=ressources">Ressources</a>
-                <select name="ressource-categ" id="ressource-categ" onchange="document.location = `#${this.value}`">
-                        <option value="null"> - </option>
-                        <?php foreach($allCategory as $category):?>
-                            <option value="<?=$category->getMwTitleCategory()?>">
-                                <?=$category->getMwTitleCategory()?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
                 <a href="?p=livreDor">Livre D'or</a>
                 <?php if (!empty($_SESSION)) :?>
-                <button class="btn"><a href="?deconnect">deconnection</a></button>
+                    <button class="btn"><a href="?deconnect">deconnection</a></button>
                     <a href="?p=admin">Admin</a>
                 <?php endif;?>
             </nav>
     </div>
 
-
 <!-- Condition pour vérifier si l'utilisateur est connecté en tant qu'administrateur -->
-
-
