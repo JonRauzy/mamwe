@@ -3,7 +3,7 @@
 namespace model\managerClass;
 
 use Exception;
-use model\mappingClass\mappingSection;
+use model\mappingClass\MappingSection;
 use model\interfaceClass\ManagerInterface;
 use model\mappingClass\MappingPicture;
 use PDO;

@@ -30,6 +30,6 @@ try {
     echo "<br>";
 }
 
-
+// echo 'yolo';
 // redirection vers le controlleur (surement à changer/sécuriser par après) :
 include_once "../controller/frontController.php";
