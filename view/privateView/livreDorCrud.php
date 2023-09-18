@@ -15,7 +15,7 @@ include_once "../view/include/header.php";
 
 <!-- titre -->
 <div class="container-crud">
-    <h1><?= $title ?></h1>
+    <h3><?= $title ?></h3>
     
     <!-- Message erreur ou validation des actions : -->
     <div class="response">

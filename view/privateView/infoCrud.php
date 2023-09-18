@@ -13,11 +13,9 @@ include_once "../view/include/header.php";
 <!-- nav bar de l'admin -->
 <?php include_once '../view/include/privateNav.php'; ?>
 
-<!-- titre -->
-<h1><?= $title ?></h1>
 
-<!-- le rest : -->
 <div class="container-crud">
+    <h3><?= $title ?></h3>
     <div class="response">
         <?php if(isset($response)) : ?>
             <p><?= $response ?><p>
