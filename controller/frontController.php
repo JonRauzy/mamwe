@@ -1,5 +1,7 @@
 <?php
 
+ini_set('display_errors', 1);
+
 ########### APPELLE DES DEPENDANCES ##########
 // appelle des mapping :
 use model\mappingClass\MappingAgenda;
@@ -29,6 +31,7 @@ use DateTime as Date;
 $currentDate = new Date();
 $currentDate = $currentDate->format("Y-m-d");
 #############################################
+
 
 
 ############# INSTANCIATION DE MANAGERS ##################
