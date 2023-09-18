@@ -66,7 +66,7 @@ include_once "../view/include/header.php";
                     </button>
                 </td>
                 <td>
-                    <button class="btn">
+                    <button>
                         <a onclick="void(0);let a=confirm('Voulez-vous vraiment supprimer \'<?= $article->getMwTitleArt() ?>\' ?'); if(a){ document.location = '?p=article&article-delete=<?= $article->getMwIdArticle() ?>'; };" href="#">delete</a>
                     </button>
                 </td>
