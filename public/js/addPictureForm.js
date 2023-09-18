@@ -1,8 +1,8 @@
 document.getElementById('addPicture').addEventListener('click', function() {
     var picturesDiv = document.getElementById('add-picture-article');
-    var pictureCount = picturesDiv.childElementCount / 4; // 4 fields per picture
+    var pictureCount = picturesDiv.childElementCount / 2; // 4 fields per picture
 
-    ['Title', 'URL', 'Size', 'Position'].forEach(function(field) {
+    ['Title', 'URL'].forEach(function(field) {
         var label = document.createElement('label');
         label.textContent = 'Picture ' + (pictureCount + 1) + ' ' + field + ':';
         picturesDiv.appendChild(label);

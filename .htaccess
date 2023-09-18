@@ -1,0 +1,12 @@
+# RewriteEngine On
+# RewriteBase /public_html
+
+# RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+# RewriteRule ^ %1 [L,NE,R=302]
+# RewriteRule ^(.*)$ public/index.php?$1 [L,QSA]
+
+RewriteEngine On
+RewriteRule ^$ public/ [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/$1 [L]
