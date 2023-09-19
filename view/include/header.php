@@ -72,10 +72,6 @@
                 <a href="?p=agenda">Agenda</a>
                 <a href="?p=contact">Contact</a>
                 <a href="?p=livreDor">Livre D'or</a>
-                <?php if (!empty($_SESSION)) :?>
-                    <button class="btn"><a href="?deconnect">deconnection</a></button>
-                    <a href="?p=admin">Admin</a>
-                <?php endif;?>
             </nav>
     </div>
 
