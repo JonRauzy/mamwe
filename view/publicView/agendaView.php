@@ -32,9 +32,9 @@ include_once "../view/include/header.php";
             <?php foreach($pastAgenda as $past): ?>
             <div class="agenda-card">
                 <h5><?= $past-> getMwTitleAgenda() ?></h5>
+                <img src="<?= $past -> getPicture() ?>" alt="" width="300px">
                 <p><?= $past -> getMwContentAgenda() ?></p>
                 <p><?= date('d/m/Y', strtotime($past-> getMwDateAgenda())) ?></p>
-                <img src="<?= $past -> getPicture() ?>" alt="" width="300px">
             </div>
             <?php endforeach; ?>
         </div>
