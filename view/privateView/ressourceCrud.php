@@ -132,7 +132,7 @@ include_once "../view/include/header.php";
                     </button>
                 </td>
                 <td>
-                    <button class="btn">
+                    <button>
                         <a onclick="void(0);let a=confirm('Voulez-vous vraiment supprimer \'<?= $ressource->getMwIdRessource() ?>\' ?'); if(a){ document.location = '?p=ressourceCrud&ressource-delete=<?= $ressource->getMwIdRessource() ?>'; };" href="#">delete</a>
                     </button>
                 </td>

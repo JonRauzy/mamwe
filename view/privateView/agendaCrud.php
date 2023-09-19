@@ -57,7 +57,7 @@ include_once "../view/include/header.php";
                         </button>
                     </td>
                     <td>
-                        <button class="btn">
+                        <button>
                             <a onclick="void(0);let a=confirm('Voulez-vous vraiment supprimer \'<?= $agenda->getMwTitleAgenda() ?>\' ?'); if(a){ document.location = '?p=agendaCrud&agenda-delete=<?= $agenda->getMwIdAgenda() ?>'; };" href="#">delete</a>
                         </button>
                     </td>

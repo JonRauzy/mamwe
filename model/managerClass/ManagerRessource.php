@@ -238,7 +238,9 @@ class ManagerRessource implements ManagerInterface
             $preparePic->execute();
 
             $picId = $dataP -> getMwIdPicture();
-        } 
+        } else {
+            $picId = null;
+        }
 
         // update ressource : 
         $sqlress = "UPDATE `mw_ressource` 
@@ -251,7 +253,7 @@ class ManagerRessource implements ManagerInterface
         $prepareRess->bindValue(':dateRess', $dataR->getMwDateRessource(), PDO::PARAM_STR);
         $prepareRess->bindValue(':categRess', $dataR->getMwCategory(), PDO::PARAM_INT);
         $prepareRess->bindValue(':subRess', $dataR->getMwSubCategory(), PDO::PARAM_INT);
-        $prepareRess->bindValue(':picRess', $dataR -> getMwPictureMwIdPicture(), PDO::PARAM_INT); 
+        $prepareRess->bindValue(':picRess', $picId, PDO::PARAM_INT); 
         $prepareRess->bindValue(':idRess', $dataR-> getMwIdRessource(), PDO::PARAM_INT);
         $prepareRess->execute();
 
