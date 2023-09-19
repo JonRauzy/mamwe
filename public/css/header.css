@@ -49,9 +49,8 @@
 nav > a, .menu_ressouces > a {
     text-decoration: none;
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bolder;
-    /* text-transform: uppercase; */
     padding: 20px 10px;
 }
 
@@ -59,4 +58,24 @@ nav a:hover {
     background-color: white;
     color: #048b9abd;
     transition: 0.2s;
+}
+
+.private-nav nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.private-nav a {
+    color: #048b9abd;
+}
+
+.private-nav a:hover{
+    background-color: #048b9abd;
+    color: white;
+    transition: 0.2s;
+}
+
+i {
+    margin: 0;
+    padding: 0;
 }
