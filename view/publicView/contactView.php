@@ -31,7 +31,6 @@ include_once "../view/include/header.php";
 
         <br><br><br><button  type="button" class="submit">Envoyer</button>
     </form>
-    
 </main>
 <!-- FOOTER -->
 <?php

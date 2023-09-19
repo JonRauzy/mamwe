@@ -20,7 +20,7 @@ body{
 	flex-direction: column;
     flex-grow: 1;   /*pour que le body recouvre toute la page HTML*/
     overflow-x:hidden;
-}
+} 
 main{
 	padding: 0 1em;
 	flex-grow: 1;
