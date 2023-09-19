@@ -75,11 +75,14 @@ class ManagerInfo implements ManagerInterface
         }
 
 
-        $sql = "INSERT INTO `mw_info`(`mw_content_info`, `mw_picture_mw_id_picture`) 
-        VALUES (:content, :picture)";  
+        $sql = "INSERT INTO `mw_info`(`mw_name_info`, `mw_adress_info`, `mw_phone_info`, `mw_mail_info`, `mw_picture_mw_id_picture`) 
+        VALUES (:name, :adress, :phone, :mail, :picture)";  
 
         $prepareInfo = $this->db->prepare($sql);
-        $prepareInfo->bindValue(':content', $dataI->getMwContentInfo(), PDO::PARAM_STR);
+        $prepareInfo->bindValue(':name', $dataI->getMwNameInfo(), PDO::PARAM_STR);
+        $prepareInfo->bindValue(':adress', $dataI->getMwAdressInfo(), PDO::PARAM_STR);
+        $prepareInfo->bindValue(':phone', $dataI->getMwPhoneInfo(), PDO::PARAM_STR);
+        $prepareInfo->bindValue(':mail', $dataI->getMwMailInfo(), PDO::PARAM_STR);
         $prepareInfo->bindValue(':picture', $lastId, PDO::PARAM_INT);
         $prepareInfo->execute();
         
@@ -107,27 +110,37 @@ class ManagerInfo implements ManagerInterface
     }
 
 
-    public function updateInfo(MappingPicture $dataP, MappingInfo $dataI){
+    public function updateInfo(MappingPicture $dataP = null, MappingInfo $dataI){
 
         $this->db->beginTransaction();
         
-        $sqlPic = "UPDATE `mw_picture` 
-                    SET `mw_title_picture`= :titlePic ,`mw_url_picture`= :urlPic
-                    WHERE `mw_id_picture`= :idPic";      
-        $preparePic = $this->db->prepare($sqlPic);
-        $preparePic->bindValue(':titlePic', $dataP->getMwTitlePicture(),PDO::PARAM_STR);
-        $preparePic->bindValue(':urlPic', $dataP->getMwUrlPicture(),PDO::PARAM_STR);
-        $preparePic->bindValue(':idPic', $dataP->getMwIdPicture(), PDO::PARAM_INT);
+        if(!is_null($dataP)){
+            $idPic = $dataP->getMwIdPicture();
+            $sqlPic = "UPDATE `mw_picture` 
+                        SET `mw_title_picture`= :titlePic ,`mw_url_picture`= :urlPic
+                        WHERE `mw_id_picture`= :idPic";      
+            $preparePic = $this->db->prepare($sqlPic);
+            $preparePic->bindValue(':titlePic', $dataP->getMwTitlePicture(),PDO::PARAM_STR);
+            $preparePic->bindValue(':urlPic', $dataP->getMwUrlPicture(),PDO::PARAM_STR);
+            $preparePic->bindValue(':idPic', $idPic, PDO::PARAM_INT);
+    
+            $preparePic->execute();
+        } else {
+            $idPic = null;
+        }
 
-        $preparePic->execute();
 
 
-        $sql = "UPDATE `mw_info` 
-                SET `mw_content_info`= :content, `mw_picture_mw_id_picture`= :picture
-                WHERE `mw_id_info`= :id";      
+
+        $sql =  "UPDATE `mw_info` 
+                SET `mw_name_info`= :name, `mw_adress_info`= :adress, `mw_phone_info`= :phone, `mw_mail_info`= :mail,`mw_picture_mw_id_picture`= :picture 
+                WHERE `mw_id_info`= :id";   
         $prepare = $this->db->prepare($sql);
-        $prepare->bindValue(':content', $dataI -> getMwContentInfo(), PDO::PARAM_STR);
-        $prepare->bindValue(':picture', $dataI -> getMwPictureMwIdPicture(), PDO::PARAM_INT);
+        $prepare->bindValue(':name', $dataI->getMwNameInfo(), PDO::PARAM_STR);
+        $prepare->bindValue(':adress', $dataI->getMwAdressInfo(), PDO::PARAM_STR);
+        $prepare->bindValue(':phone', $dataI->getMwPhoneInfo(), PDO::PARAM_STR);
+        $prepare->bindValue(':mail', $dataI->getMwMailInfo(), PDO::PARAM_STR);
+        $prepare->bindValue(':picture', $idPic, PDO::PARAM_INT);
         $prepare->bindValue(':id', $dataI -> getMwIdInfo(), PDO::PARAM_INT);
 
         $prepare->execute();

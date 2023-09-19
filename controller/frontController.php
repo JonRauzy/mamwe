@@ -660,8 +660,8 @@ if(isset($_POST['login'],$_POST['pwd'])){
             else if($_GET['p']==="article-update"){
                 if(isset($_GET['article-update']) && ctype_digit($_GET['article-update'])){
                     $articleId = (int) $_GET['article-update']; 
-                    $pictures = $pictureManager -> getAllByArticleId($articleId);
                     $articleById = $articleManager -> getOneById($articleId);
+                    $pictures = $pictureManager -> getAllByArticleId($articleId);
                     
                 }
                 if(isset($_POST['mw_update_title_art'], $_POST['mw_update_content_art'], $_POST['mw_update_visible_art'], $_POST['mw_update_section_mw_update_id_section'])){        
@@ -708,20 +708,40 @@ if(isset($_POST['login'],$_POST['pwd'])){
                 if(isset($_GET['info-update']) && ctype_digit($_GET['info-update'])){
                     $infoId = (int) $_GET['info-update']; 
                     $infoById = $infoManager->getOneById($infoId);
-                    $pictures = $pictureManager -> getOneById($infoById->getMwPictureMwIdPicture());
-                    
+                    if(!is_null($infoById->getMwPictureMwIdPicture())){
+                        $pictures = $pictureManager -> getOneById($infoById->getMwPictureMwIdPicture());
+                    }                    
                 }
-                if($_POST['mw_update_content_info']){
-                    
-                    $pictureUpdateMap = new MappingPicture([
-                        'mwTitlePicture' => $_POST['mw_update_title_pic'],
-                        'mwUrlPicture' => $_POST['mw_update_url_pic'],
-                        'mwIdPicture' =>  $pictures -> getMwIdPicture(),
-                    ]);
+
+                if(isset($_POST['mw_update_name_info'])){
+                    if(!empty($picture)){
+                        $pictureUpdateMap = new MappingPicture([
+                            'mwTitlePicture' => $_POST['mw_update_title_pic'],
+                            'mwUrlPicture' => $_POST['mw_update_url_pic'],
+                            'mwIdPicture' =>  $picture -> getMwIdPicture(),
+                        ]);
+                        $idPic = $pictures -> getMwIdPicture();
+                    } else {
+                        $idPic = null;
+                        $pictureUpdateMap = null;
+                    }
+
+                    if(isset($_POST['mw_insert_title_pic'], $_POST['mw_insert_url_pic'])){
+                        $pictureInsertMap = new MappingPicture([
+                            'mwTitlePicture' => $_POST['mw_insert_title_pic'],
+                            'mwUrlPicture' => $_POST['mw_insert_url_pic'],
+                            'mwArticleMwIdArticle' => null,
+                        ]);
+                        $pictureManager -> insertPicture($pictureInsertMap);
+                        $idPic = $db->lastInsertId();
+                    } 
 
                     $infoUpdateMap = new MappingInfo([
-                        'mwContentInfo' => $_POST['mw_update_content_info'],
-                        'mwPictureMwIdPicture' => $pictures-> getMwIdPicture(),
+                        'mwNameInfo' => $_POST['mw_update_name_info'],
+                        'mwAdressInfo' => $_POST['mw_update_adress_info'],
+                        'mwPhoneInfo' => $_POST['mw_update_phone_info'],
+                        'mwMailInfo' => $_POST['mw_update_mail_info'],
+                        'mwPictureMwIdPicture' => (is_null($idPic)) ? null : $idPic,
                         'mwIdInfo' => $infoId,
                     ]);
 
