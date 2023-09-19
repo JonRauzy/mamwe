@@ -198,7 +198,7 @@ if(isset($_POST['login'],$_POST['pwd'])){
         }  
 
         // INSERT INFO:  
-        if(isset($_POST['info-insert-content'])){
+        if(isset($_POST['info_insert_name'])){
             if(!empty($_POST['info-insert-pic-title'])){
                 $infoInsertPicMap = new MappingPicture([
                     'mwTitlePicture' => $_POST['info-insert-pic-title'],
@@ -209,7 +209,10 @@ if(isset($_POST['login'],$_POST['pwd'])){
             }
 
             $infoInsertMap = new MappingInfo([
-                "mwContentInfo"=> $_POST['info-insert-content'],
+                "mwNameInfo"=> $_POST['info_insert_name'],
+                "mwAdressInfo" => $_POST['info_insert_adress'],
+                "mwPhoneInfo" => $_POST['info_insert_phone'],
+                "mwMailInfo" => $_POST['info_insert_mail'],
             ]);
 
             $insertInfo = $infoManager -> insertInfo($infoInsertPicMap, $infoInsertMap);

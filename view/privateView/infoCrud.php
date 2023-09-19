@@ -36,10 +36,13 @@ include_once "../view/include/header.php";
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Contenu</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>E-mail</th>
                 <th>Photo</th>
-                <th>update</th>
-                <th>delete</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +50,10 @@ include_once "../view/include/header.php";
         foreach ($allInfo as $info): ?>
             <tr>
                 <td><?= $info->getMwIdInfo() ?></td>
-                <td><?= $info->getMwContentInfo() ?></td>
+                <td><?= $info->getMwNameInfo() ?></td>
+                <td><?= $info->getMwAdressInfo() ?></td>
+                <td><?= $info->getMwPhoneInfo() ?></td>
+                <td><?= $info->getMwMailInfo() ?></td>
                 <td><?= $info->getMwPictureMwIdPicture() ?></td>
                 <td>
                     <button>
@@ -78,8 +84,17 @@ include_once "../view/include/header.php";
         <h4>Ajout d'information : </h4>
         <form class="general-form" action="" method="POST">
             <!-- y'a le #mytextarea pour relier à l'éditeur de text -->
-            <label for="info-insert-content">Information : </label>
-            <textarea name="info-insert-content" id="mytextarea" ></textarea><br>
+            <label for="info_insert_name">Nom : </label>
+            <input name="info_insert_name" id="info_insert_name" ></input><br>
+
+            <label for="info_insert_adress">Adresse : </label>
+            <textarea name="info_insert_adress" id="mytextarea"></textarea><br>
+
+            <label for="info_insert_phone">Téléphone : </label>
+            <input name="info_insert_phone" id="info_insert_phone" ></input><br>
+
+            <label for="info_insert_mail">E-mail : </label>
+            <input name="info_insert_mail" id="info_insert_mail" ></input><br>
         
             <h4>Photo : </h4>
         

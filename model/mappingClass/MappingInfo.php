@@ -13,7 +13,7 @@ class MappingInfo extends MappingAbstract
 
     private int $mwIdInfo;
     private string $mwNameInfo;
-    private string $mwAdressInfo;
+    private ?string $mwAdressInfo;
     private ?string $mwPhoneInfo;
     private ?string $mwMailInfo;
     private ?int $mwPictureMwIdPicture;
@@ -55,7 +55,7 @@ class MappingInfo extends MappingAbstract
     /**
      * Get the value of mwAdressInfo
      */
-    public function getMwAdressInfo(): string
+    public function getMwAdressInfo(): ?string
     {
         return $this->mwAdressInfo;
     }
@@ -63,7 +63,7 @@ class MappingInfo extends MappingAbstract
     /**
      * Set the value of mwAdressInfo
      */
-    public function setMwAdressInfo(string $mwAdressInfo): self
+    public function setMwAdressInfo(?string $mwAdressInfo): self
     {
         $this->mwAdressInfo = $mwAdressInfo;
 
@@ -74,7 +74,7 @@ class MappingInfo extends MappingAbstract
     /**
      * Get the value of mwPhoneInfo
      */
-    public function getMwPhoneInfo(): string
+    public function getMwPhoneInfo(): ?string
     {
         return $this->mwPhoneInfo;
     }
@@ -82,7 +82,7 @@ class MappingInfo extends MappingAbstract
     /**
      * Set the value of mwPhoneInfo
      */
-    public function setMwPhoneInfo(string $mwPhoneInfo): self
+    public function setMwPhoneInfo(?string $mwPhoneInfo): self
     {
         $this->mwPhoneInfo = $mwPhoneInfo;
 
@@ -116,7 +116,7 @@ class MappingInfo extends MappingAbstract
         return $this;
     }
 
-    
+
     // GET de picture // 
     public function getMwPictureMwIdPicture(): ?int
     {
