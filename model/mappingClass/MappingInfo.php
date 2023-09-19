@@ -11,10 +11,12 @@ class MappingInfo extends MappingAbstract
 {
     use DateTrait;
 
-    private  int $mwIdInfo;
-    private  string $mwContentInfo;
-    // private  string $mwDateInfo;
-    private  ?int $mwPictureMwIdPicture;
+    private int $mwIdInfo;
+    private string $mwNameInfo;
+    private string $mwAdressInfo;
+    private ?string $mwPhoneInfo;
+    private ?string $mwMailInfo;
+    private ?int $mwPictureMwIdPicture;
 
     public function __construct(array $tab)
     {
@@ -30,7 +32,62 @@ class MappingInfo extends MappingAbstract
         return $this->mwIdInfo;
     }
 
+    /**
+     * Get the value of mwNameInfo
+     */
+    public function getMwNameInfo(): string
+    {
+        return $this->mwNameInfo;
+    }
 
+
+    /**
+     * Set the value of mwNameInfo
+     */
+    public function setMwNameInfo(string $mwNameInfo): self
+    {
+        $this->mwNameInfo = $mwNameInfo;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of mwAdressInfo
+     */
+    public function getMwAdressInfo(): string
+    {
+        return $this->mwAdressInfo;
+    }
+
+    /**
+     * Set the value of mwAdressInfo
+     */
+    public function setMwAdressInfo(string $mwAdressInfo): self
+    {
+        $this->mwAdressInfo = $mwAdressInfo;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of mwPhoneInfo
+     */
+    public function getMwPhoneInfo(): string
+    {
+        return $this->mwPhoneInfo;
+    }
+
+    /**
+     * Set the value of mwPhoneInfo
+     */
+    public function setMwPhoneInfo(string $mwPhoneInfo): self
+    {
+        $this->mwPhoneInfo = $mwPhoneInfo;
+
+        return $this;
+    }
     // SET // 
     
     public function setMwIdInfo(int $mwIdInfo ) : self
@@ -40,65 +97,44 @@ class MappingInfo extends MappingAbstract
         return $this;
     }
 
-      // GET de content  // 
-      public function getMwContentInfo(): string
-      {
-          return $this->mwContentInfo;
-      }
-  
-      // SET //
-  
-      public function setMwContentInfo(string $mwContentInfo): self
-      {
-          $this->mwContentInfo = $mwContentInfo;
-  
-          return $this;
-      }
 
-          // GET de date // 
+        /**
+     * Get the value of mwMailInfo
+     */
+    public function getMwMailInfo(): ?string
+    {
+        return $this->mwMailInfo;
+    }
 
-    // public function getMwDateInfo(): string
-    // {
-    //     return $this->mwDateInfo;
-    // }
+    /**
+     * Set the value of mwMailInfo
+     */
+    public function setMwMailInfo(?string $mwMailInfo): self
+    {
+        $this->mwMailInfo = $mwMailInfo;
 
+        return $this;
+    }
 
-    // // SET // 
     
-    // /**
-    //  * @param string $mwDateAgenda
-    //  *
-    //  * @return self
-    //  * @throws Exception
-    //  */
-    // public function setMwDateInfo(string $mwDateInfo): self
-    // {
-    //     if (!$this->DateTrait($mwDateInfo, 'Y-m-d')) {
-    //         throw new Exception('Date incorrecte, format attendu : Y/m/d');
-    //     }
+    // GET de picture // 
+    public function getMwPictureMwIdPicture(): ?int
+    {
+        return $this->mwPictureMwIdPicture;
+    }
 
-    //     $now = new DateTime();
 
- 
-    //     $this->mwDateInfo = $now->format('Y-m-d');
+    // set de picture // 
 
-    //     return $this;
-    // }
+    public function setMwPictureMwIdPicture(?int $mwPictureMwIdPicture): self
+    {
+        $this->mwPictureMwIdPicture = $mwPictureMwIdPicture;
 
-       // GET de picture // 
-       public function getMwPictureMwIdPicture(): ?int
-       {
-           return $this->mwPictureMwIdPicture;
-       }
+        return $this;
+    }
    
-   
-       // set de picture // 
-   
-       public function setMwPictureMwIdPicture(?int $mwPictureMwIdPicture): self
-       {
-           $this->mwPictureMwIdPicture = $mwPictureMwIdPicture;
-   
-           return $this;
-       }
-   
-   }
+
+
+
+
+}
