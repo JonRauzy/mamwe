@@ -13,13 +13,15 @@
 
       <!--on met le bouton de connexion directement dans le footer  -->
 
-      <!-- si on est connecté -->      
-      <?php if(empty($_SESSION)  && $title !== "Connection" ) : ?>
-        <button class="btn"><a href="?p=connect"><i class="fa-solid fa-screwdriver-wrench"></i></a></button>
+      <!-- si on est connecté -->   
+      <?php if($title !== "Connection" ) : ?> 
+        <?php if(empty($_SESSION)) : ?>
+          <button class="btn"><a href="?p=connect"><i class="fa-solid fa-screwdriver-wrench"></i></a></button>
         <?php else : ?>
-        <button class="btndeco"><a href="?deconnect">deconnection</a></button>
-        <a href="?p=admin">Admin</a>
+          <button class="btndeco"><a href="?deconnect">deconnection</a></button>
+          <a href="?p=admin">Admin</a>
         <?php endif;  ?>
+      <?php endif; ?>
 
       </footer>
 
