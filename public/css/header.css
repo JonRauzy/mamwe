@@ -1,32 +1,62 @@
 /*pour le sous-menu ressources", voir la page de css ressources  */
+* {
+    font-family: "Roboto";
+}
 
-nav>a, .menu_ressouces>a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 20px;
-    background: #048b9abd;
-    border-radius: 0% 50%;
-}
-.img{
+.public-nav {
+    background-image: url(../asset/img/banniereflip.png);
+    background-size: cover;
+    background-position: right;
     width: 100%;
-    height: auto;
-}
-.public-nav{
-    background-image: url(../asset/img/bannieretest.png);
-    width: 100%;
-    height: 400px;
+    height: 50vh;
     background-repeat: no-repeat; 
-}
-.titre{
-    text-align: center;
+    position: relative;
+    margin-bottom: 2rem;
 }
 
-nav {
+.public-nav > .logo {
+    position: absolute;
+    top: 10%;
+    left: 2rem;
+    height: 70%;
+}
+
+.titre {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.titre h1, .titre h2 {
+    padding: 0;
+}
+
+.titre h1 {
+    font-family: "Caveat";
+}
+
+.public-nav nav {
+    background: #048b9abd;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: absolute;
+    bottom: 0;
+    /* padding: 0 20px; */
 }
 
+nav > a, .menu_ressouces > a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    /* text-transform: uppercase; */
+    padding: 20px 10px;
+}
 
+nav a:hover {
+    background-color: white;
+    color: #048b9abd;
+    transition: 0.2s;
+}
