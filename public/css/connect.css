@@ -1,0 +1,34 @@
+.connect-form {
+    background-color: whitesmoke;
+    width: 60%;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+.connect-form input, .connect-form button  {
+    display: block;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 2rem;
+    padding: 0.25em 0.5em;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.connect-form input {
+    border: solid 2px #04889a;
+}
+
+.connect-form button {
+    border: none;
+    background-color: #048b9a;
+    color: white;
+    cursor: pointer;
+}
+
+.connect-form button:hover {
+    background-color: white;
+    color: #048b9a;
+    transition: 0.5s;
+}
