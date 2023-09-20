@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="css/livredor.css">    
     <link rel="stylesheet" href="css/ressources.css">
     <link rel="stylesheet" href="css/crud.css">
+
     <link rel="stylesheet" href="css/agenda.css">
+
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
