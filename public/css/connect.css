@@ -11,13 +11,10 @@
     width: 50%;
     margin: auto;
     padding: 0.25em 0.5em;
-    border-radius: 10px;
-    font-size: 1rem;
 }
 
 .connect-form input {
     margin-bottom: 2rem;
-    border: solid 2px #04889a;
 }
 
 .connect-form button {

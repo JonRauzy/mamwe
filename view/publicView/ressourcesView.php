@@ -11,7 +11,7 @@ function displayTitle($title, $heading){
 <!-- HTML -->
 <main>
     <figure class="circle"></figure>
-    <h1><?= $title ?></h1>
+    <h2><?= $title ?></h2>
         <p class="intro"><!--class intro voir css Livre d'Or-->
                 Vous retrouverez ici une mine d'informations sur tous les thèmes qui touchent à la naissance de la préconception à la puériculture en passant par la parentalité.
         </p>

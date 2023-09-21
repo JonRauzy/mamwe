@@ -20,26 +20,10 @@
     font-size: 1.5rem;
 }
 
-.container-crud button {
-    border: none;
-    background-color: white;
-    color: #048b9a;
-    padding: 0.2rem 0.5rem;
-    text-transform: uppercase;
-    border-radius: 5px;
-}
-
 .container-crud a {
     color: inherit;
     text-decoration: none;
     font-family: inherit;
-}
-
-.container-crud button:hover {
-    cursor: pointer;
-    background-color: #048b9a;
-    color: whitesmoke;
-    transition: 0.5s;
 }
 
 .crud-table {
@@ -67,8 +51,6 @@
 .crud-form input, .crud-form label {
     display: block;
     width: fit-content;
-    padding: 0.2rem;
-    margin: 0;
 }
 
 .crud-form textarea {
@@ -78,8 +60,6 @@
 
 .crud-form input, .crud-form select {
     margin-bottom: 1rem;
-    border: solid 2px #04889a;
-    border-radius: 5px;
 }
 
 .crud-form, .crud-table {
