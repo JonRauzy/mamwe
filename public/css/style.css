@@ -2,6 +2,9 @@
 CSS générale pour tout ce qui sera commun à chaque page (ex: couleur, background, typo...) 
 On fera des CSS spécifiques pour les éléments spécifiques (formulaires et autres)
 */
+html {
+	scroll-behavior: smooth;
+}
 
 * {
     margin: 0;
@@ -94,4 +97,10 @@ button:hover {
 ::placeholder {
 	font-size: 1rem;
 	color: grey;
+}
+
+@media (max-width: 900px) {
+	nav {
+		display: hidden;
+	}
 }
