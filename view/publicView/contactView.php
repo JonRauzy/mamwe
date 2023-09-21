@@ -31,7 +31,20 @@ include_once "../view/include/header.php";
 
         <br><br><br><button  type="button" class="submit">Envoyer</button>
     </form>
-    
+
+    <?php if(isset($allInfo)) : ?>
+        <?php foreach($allInfo as $info): ?>
+            <h4><?= $info -> getMwNameInfo()  ?></h4>
+            <a href="https://maps.google.com/maps?q=<?= str_replace(["<p>", "</p>", "<br>", "<br/>"], " ", $info -> getMwAdressInfo()) ?>" target="_blank"><?= $info -> getMwAdressInfo() ?></a>
+            <?php if(!is_null($info -> getMwPhoneInfo())) : ?>
+                <p><?= $info -> getMwPhoneInfo() ?></p>
+            <?php endif; ?>
+            <?php if(!is_null($info -> getMwMailInfo())) : ?>
+                <p><?= $info -> getMwMailInfo() ?></p>
+            <?php endif; ?>
+
+        <?php endforeach; ?>
+    <?php endif; ?>
 </main>
 <!-- FOOTER -->
 <?php
