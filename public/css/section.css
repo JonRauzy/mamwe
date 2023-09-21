@@ -2,13 +2,26 @@
     text-align: center;
     font-size: 180%;
     color: #ef9628;
+    margin: 4rem 0 2rem;
 }
-.textsection{
+
+.text-section {
     margin-left: 20%;
     margin-right: 20%;
-   text-align: justify;
+    text-align: justify;
     color: #048b9a;
 }
+
+.article-date {
+    margin-left: 20%;
+    color: #048b9a;
+    margin-bottom: 10rem;
+}
+
+.text-section li {
+    margin-left: 3rem;
+}
+
 .picture1{
     display: flex;
     justify-content: center;
