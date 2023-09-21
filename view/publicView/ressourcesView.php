@@ -12,11 +12,23 @@ function displayTitle($title, $heading){
 <main>
     <figure class="circle"></figure>
     <h2><?= $title ?></h2>
-        <p class="intro"><!--class intro voir css Livre d'Or-->
-                Vous retrouverez ici une mine d'informations sur tous les thèmes qui touchent à la naissance de la préconception à la puériculture en passant par la parentalité.
-        </p>
+
+    <!--class intro voir css Livre d'Or-->
+    
+	<div class="empty"></div>
+    <p class="intro">Vous retrouverez ici une mine d'informations sur tous les thèmes qui touchent à la naissance de la préconception à la puériculture en passant par la parentalité.</p>
+
+    <menu id="ressource-select">     
+        <?php foreach($allCategory as $category):?>
+            <li> <a href="#<?=$category->getMwTitleCategory()?>">
+                <?=$category->getMwTitleCategory()?></a>
+            </li>
+        <?php endforeach; ?>
+    </menu>
+
 	<div class="empty"></div>
 
+    <div class="ressource-container">
     <?php
         // on boucle sur les catégories
         foreach($getAllCateg as $categ){
@@ -56,7 +68,7 @@ function displayTitle($title, $heading){
                                 echo '<img src="' . $imgPath . '" class="img_ressources">';				
                             }
                             // Insertion d'une DIV contenant un unique lien (avec ou sans icone)
-                            echo '<div>';
+                            echo '<div class="link-ressource">';
                             if ($all->getMwSubCategory()==1){
                                 echo '<a target="_blank" href=" ' . $all -> getMwUrlRessource(). ' "><img src="asset/icon/basket.svg" height="25px"></a>';
                             }else{
@@ -76,6 +88,7 @@ function displayTitle($title, $heading){
             echo '</section>';
     } // end foreach($getAllCateg as $categ)
     ?>
+    </div>
 </main>
 <?php
 // FOOTER

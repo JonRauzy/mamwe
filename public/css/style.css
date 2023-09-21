@@ -9,7 +9,7 @@ On fera des CSS spécifiques pour les éléments spécifiques (formulaires et au
     box-sizing: border-box;
 }
 
-* a {
+a {
 	text-decoration: none;
 	color: inherit;
 }
