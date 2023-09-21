@@ -11,7 +11,7 @@ include_once "../view/include/header.php";
 <!-- HTML -->
 <main>
 <figure class="circle"></figure>
-    <h2 class="agenda-title"><?= $title ?></h2>
+    <h2><?= $title ?></h2>
     <div class="agenda-container">
 
         <h4>Evenement à venir : </h4>

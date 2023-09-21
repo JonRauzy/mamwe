@@ -10,7 +10,7 @@ include_once "../view/include/header.php";
 <!-- HTML -->
 <main>
 
-    <h1><?= $title ?></h1>
+    <h2><?= $title ?></h2>
     <img class="photocontact" src="asset/img/logo2.png">
     
 
