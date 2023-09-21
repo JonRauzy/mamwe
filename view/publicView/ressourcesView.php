@@ -9,7 +9,19 @@ function displayTitle($title, $heading){
 }
 ?>
 <!-- HTML -->
-<main>
+<main id="ressource-main">
+
+    <div class="menu-container">
+        <menu id="ressource-select">  
+            <li>Choisissez une catégory</li>   
+            <?php foreach($allCategory as $category):?>
+                <li> <a href="#<?=$category->getMwTitleCategory()?>">
+                    <?=$category->getMwTitleCategory()?></a>
+                </li>
+            <?php endforeach; ?>
+        </menu>
+    </div>
+        
     <figure class="circle"></figure>
     <h2><?= $title ?></h2>
 
@@ -17,14 +29,6 @@ function displayTitle($title, $heading){
     
 	<div class="empty"></div>
     <p class="intro">Vous retrouverez ici une mine d'informations sur tous les thèmes qui touchent à la naissance de la préconception à la puériculture en passant par la parentalité.</p>
-
-    <menu id="ressource-select">     
-        <?php foreach($allCategory as $category):?>
-            <li> <a href="#<?=$category->getMwTitleCategory()?>">
-                <?=$category->getMwTitleCategory()?></a>
-            </li>
-        <?php endforeach; ?>
-    </menu>
 
 	<div class="empty"></div>
 

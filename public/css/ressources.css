@@ -34,28 +34,42 @@
     height: 250px;
 } 
 
-.menu_ressource {
-    position: absolute;
-}
-
-.menu_ressouces:hover #ressource-select {
-    visibility: visible;
-}
 
 .link-ressource a { 
     color: #ef9628;
     text-decoration: underline;
 }
 
+#ressource-main {
+    position: relative;
+}
+
 #ressource-select {
-    visibility: hidden;
     position: absolute;
-    padding-top: 0.25em;
-    padding-left: 0.25em; 
+    top: 0;
+    left: 2rem;
     background: #048b9abd;
+    width: fit-content;
+    margin: auto;
+    height: 1.5rem;
+    overflow: hidden;
+    color: white;
+    padding: 0 0.5rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+#ressource-select:hover {
+    height: fit-content;
+    transition: 0.5s;
 }
 
 #ressource-select li {
    list-style: none; 
    line-height: 1.5em;
+}
+
+#ressource-select li:hover {
+    background-color: white;
+    color: #048b9abd;
 }

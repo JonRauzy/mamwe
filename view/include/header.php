@@ -65,17 +65,7 @@
         <?php
         endforeach;
         ?> 
-        <div class="menu_ressouces">
-            <a href="?p=ressources">Ressources</a>
-            <!----sous-menu ressources   ----->
-            <menu id="ressource-select">     
-                <?php foreach($allCategory as $category):?>
-                    <li> <a href="#<?=$category->getMwTitleCategory()?>">
-                        <?=$category->getMwTitleCategory()?></a>
-                    </li>
-                <?php endforeach; ?>
-            </menu>
-        </div>
+        <a href="?p=ressources">Ressources</a>
         <a href="?p=agenda">Agenda</a>
         <a href="?p=contact">Contact</a>
         <a href="?p=livreDor">Livre D'or</a>
