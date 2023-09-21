@@ -14,7 +14,6 @@ box-shadow: 0 5px 20px rgba(0, 0, 0, 0.055);
 
 .textehome {
   margin: 0 2rem;
-  font-family: "Roboto Condensed",Georgia,Times,"Times New Roman",serif;
   color: #048b9a; 
   text-align: justify;
 }
@@ -59,17 +58,16 @@ box-shadow: 0 5px 20px rgba(0, 0, 0, 0.055);
 .textehome1:nth-of-type(odd) {   
   margin-left: 700px;
   margin-top: -30px;
-  font-family: "Roboto Condensed",Georgia,Times,"Times New Roman",serif;
   font-size: 1rem;
   color: #048b9a;
 } 
 .textehome1:nth-of-type(even) {
   margin-right: 700px;
   margin-top: -20px;
-  font-family: "Roboto Condensed",Georgia,Times,"Times New Roman",serif;
   font-size: 1rem;
   color: #048b9a;
 }
+
 .circle1 {
   display: block;
   background:  #c9eaec;

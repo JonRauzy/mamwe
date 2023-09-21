@@ -16,7 +16,7 @@ a {
 
 body {
 	min-height: 100vh;
-	font-family: "Roboto Condensed", sans-serif;
+	font-family: "Roboto", sans-serif;
 	display: flex;
 	flex-direction: column;
     flex-grow: 1;   /*pour que le body recouvre toute la page HTML*/
@@ -34,7 +34,7 @@ h2 {
 	font-size: 2rem;
 }
 
-.empty{      /*div vide pour faire des espaces entre différents blocs*/
+.empty {      /*div vide pour faire des espaces entre différents blocs*/
     height: 2em;   
 }
 
