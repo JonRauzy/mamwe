@@ -63,7 +63,7 @@ class ManagerSection implements ManagerInterface
 
         $this->db->beginTransaction();
         
-        $sqlPic = "INSERT INTO `mw_picture`(`mw_title_picture`, `mw_url_picture`,) VALUES (:titlePic,:urlPic)";      
+        $sqlPic = "INSERT INTO `mw_picture`(`mw_title_picture`, `mw_url_picture`) VALUES (:titlePic,:urlPic)";      
         $preparePic = $this->db->prepare($sqlPic);
         $preparePic->bindValue(':titlePic', $dataP->getMwTitlePicture(),PDO::PARAM_STR);
         $preparePic->bindValue(':urlPic', $dataP->getMwUrlPicture(),PDO::PARAM_STR);

@@ -2,6 +2,9 @@
 CSS générale pour tout ce qui sera commun à chaque page (ex: couleur, background, typo...) 
 On fera des CSS spécifiques pour les éléments spécifiques (formulaires et autres)
 */
+html {
+	scroll-behavior: smooth;
+}
 
 * {
     margin: 0;
@@ -9,40 +12,36 @@ On fera des CSS spécifiques pour les éléments spécifiques (formulaires et au
     box-sizing: border-box;
 }
 
-html{
-    min-height: 100%;  /*pour que la page HTML fasse au moins la taille de l'écran entier*/
-	display: flex;
-    flex-direction: column;
+a {
+	text-decoration: none;
+	color: inherit;
 }
-body{
-	font-family: "Roboto Condensed",Georgia,Times,"Times New Roman",serif;
+
+body {
+	min-height: 100vh;
+	font-family: "Roboto", sans-serif;
 	display: flex;
 	flex-direction: column;
     flex-grow: 1;   /*pour que le body recouvre toute la page HTML*/
     overflow-x:hidden;
 }
-main{
-	padding: 0 1em;
+
+main {
 	flex-grow: 1;
 }
 
-h1{
+h2 {
     text-align: center;
 	padding: .5em;
 	color: #048b9a;
+	font-size: 2rem;
 }
-h2{
-	padding: 0.5em 0;
-	font-family: "Roboto Condensed",Georgia,Times,"Times New Roman",serif;
-}
-h3{
-	margin: 0.5em 0;
-}
-.empty{      /*div vide pour faire des espaces entre différents blocs*/
+
+.empty {      /*div vide pour faire des espaces entre différents blocs*/
     height: 2em;   
 }
 
-footer{
+footer {
     width: 100%;
     display: flex;
 	position: relative;
@@ -51,17 +50,9 @@ footer{
 	margin-top: 1em;
 }
 
-/*------------------pour le bouton de connexion admin-----------------*/
-.btn{
-	left: 0;
-	bottom: 0;
-	position: absolute;
-}
-
 /*---------------------bouton Back To Top ----------------------------*/
 #btt {    		
 	color: #0c0c0cc5;
-
 	background-color: white;
 	font-style: italic;
 	font-weight: bold;
@@ -78,3 +69,38 @@ footer{
 	cursor: pointer;
 }
 
+input, textarea {
+	border: solid 2px #04889a;
+    border-radius: 5px;
+    padding: 0.2rem;
+	border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+	border: none;
+    background-color: white;
+    color: #048b9a;
+    padding: 0.2rem 0.5rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+	font-size: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #048b9a;
+    color: whitesmoke;
+    transition: 0.5s;
+}
+
+::placeholder {
+	font-size: 1rem;
+	color: grey;
+}
+
+@media (max-width: 900px) {
+	nav {
+		display: hidden;
+	}
+}

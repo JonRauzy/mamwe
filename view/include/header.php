@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/ressources.css">
     <link rel="stylesheet" href="css/crud.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/agenda.css">
+    <link rel="stylesheet" href="css/connect.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,17 +66,7 @@
         <?php
         endforeach;
         ?> 
-        <div class="menu_ressouces">
-            <a href="?p=ressources">Ressources</a>
-            <!----sous-menu ressources   ----->
-            <menu id="ressource-select">     
-                <?php foreach($allCategory as $category):?>
-                    <li> <a href="#<?=$category->getMwTitleCategory()?>">
-                        <?=$category->getMwTitleCategory()?></a>
-                    </li>
-                <?php endforeach; ?>
-            </menu>
-        </div>
+        <a href="?p=ressources">Ressources</a>
         <a href="?p=agenda">Agenda</a>
         <a href="?p=contact">Contact</a>
         <a href="?p=livreDor">Livre D'or</a>
