@@ -2,6 +2,9 @@
 CSS générale pour tout ce qui sera commun à chaque page (ex: couleur, background, typo...) 
 On fera des CSS spécifiques pour les éléments spécifiques (formulaires et autres)
 */
+html {
+	scroll-behavior: smooth;
+}
 
 * {
     margin: 0;
@@ -9,14 +12,14 @@ On fera des CSS spécifiques pour les éléments spécifiques (formulaires et au
     box-sizing: border-box;
 }
 
-* a {
+a {
 	text-decoration: none;
 	color: inherit;
 }
 
 body {
 	min-height: 100vh;
-	font-family: "Roboto Condensed", sans-serif;
+	font-family: "Roboto", sans-serif;
 	display: flex;
 	flex-direction: column;
     flex-grow: 1;   /*pour que le body recouvre toute la page HTML*/
@@ -34,7 +37,7 @@ h2 {
 	font-size: 2rem;
 }
 
-.empty{      /*div vide pour faire des espaces entre différents blocs*/
+.empty {      /*div vide pour faire des espaces entre différents blocs*/
     height: 2em;   
 }
 
@@ -94,4 +97,10 @@ button:hover {
 ::placeholder {
 	font-size: 1rem;
 	color: grey;
+}
+
+@media (max-width: 900px) {
+	nav {
+		display: hidden;
+	}
 }

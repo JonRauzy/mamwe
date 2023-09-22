@@ -10,7 +10,7 @@ class MappingSection extends MappingAbstract
     private int $mwIdSect;
     private string $mwTitleSect;
     private ?string $mwContentSect;
-    private int $mwVisibleSect;
+    private $mwVisibleSect;
     private ?int $mwPictureMwIdPicture;
     private ?string $picture;
 
@@ -104,7 +104,7 @@ class MappingSection extends MappingAbstract
      *
      * @return string
      */
-    public function getMwVisibleSect(): int
+    public function getMwVisibleSect()
     {
         return $this->mwVisibleSect;
     }
@@ -116,7 +116,7 @@ class MappingSection extends MappingAbstract
      *
      * @return self
      */
-    public function setMwVisible(int $mwVisibleSect): self
+    public function setMwVisibleSect($mwVisibleSect)
     {
         if($mwVisibleSect < 0 ) throw new Exception("La valeur ne paut pas être négative");
         if($mwVisibleSect > 2 ) throw new Exception("La valeur est trop grande");

@@ -1,39 +1,75 @@
-.h2_ressources{
-    color: #048b9a;
+.ressource-container {
+    width: 95%;
+    margin: auto;
+    padding: 1rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.144);
 }
-.h3_ressources{
+
+.intro {
+    width: 70%;
+    margin: auto;
+}
+
+.h3_ressources {
     color: #ef9628;
     text-decoration: underline;
+    margin-bottom: 1rem;
 }
-.ressources{
+
+.ressources {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr ;
     gap: 10px;   
 }
-.contenu_ressources{
+
+.ressources p {
+    margin-bottom: 0.5rem;
+}
+
+.contenu_ressources {
     font-style: italic;
 }
-.img_ressources{
+
+.img_ressources {
     height: 250px;
 } 
-.menu_ressource{
-    position: absolute;
-}
-.menu_ressouces:hover #ressource-select{
-    visibility: visible;
-}
-#ressource-select a{ 
+
+
+.link-ressource a { 
     color: #ef9628;
-    text-decoration: none;
+    text-decoration: underline;
 }
-#ressource-select{
-    visibility: hidden;
+
+#ressource-main {
+    position: relative;
+}
+
+#ressource-select {
     position: absolute;
-    padding-top: 0.25em;
-    padding-left: 0.25em; 
+    top: 0;
+    left: 2rem;
     background: #048b9abd;
+    width: fit-content;
+    margin: auto;
+    height: 1.5rem;
+    overflow: hidden;
+    color: white;
+    padding: 0 0.5rem;
+    margin-top: 2rem;
+    cursor: pointer;
 }
-#ressource-select li{
+
+#ressource-select:hover {
+    height: fit-content;
+    transition: 0.5s;
+}
+
+#ressource-select li {
    list-style: none; 
    line-height: 1.5em;
+}
+
+#ressource-select li:hover {
+    background-color: white;
+    color: #048b9abd;
 }

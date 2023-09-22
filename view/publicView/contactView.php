@@ -4,13 +4,20 @@ $title = "Contact";
 
 // HEAD + HEADER + NAVBAR
 include_once "../view/include/header.php";
-
+var_dump($_POST);
 ?>
 
 <!-- HTML -->
 <main>
 
     <h2><?= $title ?></h2>
+
+    <div class="response">
+        <?php if (isset($response)): ?>
+            <p><?= $response ?></p>
+        <?php endif; ?> 
+    </div>
+
     <img class="photocontact" src="asset/img/logo2.png">
     
 
@@ -24,14 +31,27 @@ include_once "../view/include/header.php";
         <input type="email" placeholder="E-mail" name="mail_contact" required>
 
         <label class="soustitre" for="objet"> </label><br><br>
-        <input type="text" placeholder="Objet" id="objet_contact" required>
+        <input type="text" placeholder="Objet" name="objet_contact" required>
 
         <label class="soustitre" for="message_contact"> </label><br><br>
         <input name="message_contact" placeholder="Message" rows="5" required></input><br>
 
-        <br><br><br><button  type="button" class="submit">Envoyer</button>
+        <br><br><br><button type="submit" class="submit">Envoyer</button>
     </form>
-    
+
+    <?php if(isset($allInfo)) : ?>
+        <?php foreach($allInfo as $info): ?>
+            <h4><?= $info -> getMwNameInfo()  ?></h4>
+            <a href="https://maps.google.com/maps?q=<?= str_replace(["<p>", "</p>", "<br>", "<br/>"], " ", $info -> getMwAdressInfo()) ?>" target="_blank"><?= $info -> getMwAdressInfo() ?></a>
+            <?php if(!is_null($info -> getMwPhoneInfo())) : ?>
+                <p><?= $info -> getMwPhoneInfo() ?></p>
+            <?php endif; ?>
+            <?php if(!is_null($info -> getMwMailInfo())) : ?>
+                <p><?= $info -> getMwMailInfo() ?></p>
+            <?php endif; ?>
+
+        <?php endforeach; ?>
+    <?php endif; ?>
 </main>
 <!-- FOOTER -->
 <?php
