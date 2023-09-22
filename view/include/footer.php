@@ -11,8 +11,8 @@
         <div class="footer-section">
             <h2 class="titrecont">Navigation</h2>
             <a class="lienfoot" href="./">Accueil</a>
-            <a class="lienfoot" href="?sectionId=1">Avant la Grosses</a>
-            <a class="lienfoot" href="?sectionId=2">Grosses</a>
+            <a class="lienfoot" href="?sectionId=1">Avant la Grossesse</a>
+            <a class="lienfoot" href="?sectionId=2">Pendant la grossesse</a>
             <a class="lienfoot" href="?sectionId=3">Après la naissance</a>
             <a class="lienfoot" href="?p=agenda">Agenda</a>
             <a class="lienfoot" href="?p=contact">Contact</a>
