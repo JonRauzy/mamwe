@@ -82,16 +82,17 @@ class ManagerUser implements ManagerInterface
         return $result;
     }
     
-    public function getOneById($id){
-        $sql = "SELECT * FROM mw_user WHERE mw_id_user = :id";
+    public function getOneById($login){
+        $sql = "SELECT * FROM mw_user WHERE mw_login_user = :login";
         $prepare = $this -> db -> prepare($sql);
-        $prepare->bindParam(':id', $id,PDO::PARAM_INT);
+        $prepare->bindParam(':login', $login, PDO::PARAM_STR);
         $prepare -> execute();
         $result = $prepare -> fetch();
         if($result){
             return new MappingUser($result);
+
         }else{
-            throw new Exception("cette utilisateur $id n'existe pas" );
+            return "cette utilisateur n'existe pas";
         }        
     }
     

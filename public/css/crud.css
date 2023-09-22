@@ -82,3 +82,19 @@
 #addPicture {
     margin-bottom: 1rem;
 }
+
+.change-crud {
+    width: 60%;
+    margin: auto;
+}
+
+.change {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.crud-form h5 {
+    color: #048b9a;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
