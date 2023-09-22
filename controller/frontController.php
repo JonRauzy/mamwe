@@ -91,10 +91,23 @@ if(isset($_GET['deconnect'])){
     exit();
 }
 
-if(isset($_POST['name_contact'], $_POST['mail_contact'], $_POST['message_contact'])){
+if(isset($_POST['name_contact'], $_POST['mail_contact'], $_POST['objet_contact'], $_POST['message_contact'])){
     $mailSent = sendMail($_POST['name_contact'], $_POST['mail_contact'], $_POST['message_contact']);
-    // METTRE LE MAILSENT DANS LA REPONSE DE LA VUE
+    if($mailSent){
+        $response = "Evenement enregistrer !";
+    }else{
+        $response = "Un problème est survenu, réssayez !";
+    }
+    ?>
+        <!-- <script>
+            window.setTimeout(function() {
+                window.location = './?p=contact';
+            }, 3000);
+        </script> -->
+    <?php
 }
+   
+
 
 // connection à l'admin
 if(isset($_POST['login'],$_POST['pwd'])){
