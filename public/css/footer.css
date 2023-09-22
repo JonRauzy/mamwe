@@ -1,0 +1,40 @@
+footer {
+  background-color: #048b9a;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  display: flex; 
+  justify-content: space-between; 
+  
+}
+
+
+.footer-section {
+  flex: 2; 
+  padding: 5px;
+  display: grid;
+ 
+}
+
+.lienfoot{
+  text-decoration: none;
+  color: #fff;
+  display: grid;
+  padding: 2px;
+
+}
+
+a.lienfoot:hover{
+  color:#ef9628 ;
+}
+
+.picfoot{
+  margin-left: 200px;
+}
+
+.titrecont{
+  color: #ef9628;
+}
+
+
+
