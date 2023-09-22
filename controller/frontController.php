@@ -106,8 +106,6 @@ if(isset($_POST['name_contact'], $_POST['mail_contact'], $_POST['objet_contact']
         </script>
     <?php
 }
-   
-
 
 // connection à l'admin
 if(isset($_POST['login'],$_POST['pwd'])){
@@ -119,10 +117,12 @@ if(isset($_POST['login'],$_POST['pwd'])){
 
     if($connectUser){
         include_once '../view/privateView/admin.php';
-    }else{
-        $erreur = "Nom d'utilisateur ou mot de passe incorrect ! "; 
+    } else {
+        $response = "Nom d'utilisateur ou mot de passe incorrect ! "; 
+        include_once '../view/publicView/connectView.php';
     }
 }  
+
 #######################################################################
 
 
@@ -132,6 +132,47 @@ if(isset($_POST['login'],$_POST['pwd'])){
 
     // est-ce qu'on est connecté :
     else if(isset($_SESSION['idSession']) && $_SESSION['idSession']==session_id()){
+        if(isset($_POST['old-login'], $_POST['new-login'], $_POST['old-mail'], $_POST['new-mail'], $_POST['old-password'], $_POST['new-password1'], $_POST['new-password2'] )){
+            $oldLogin = htmlspecialchars(strip_tags(trim($_POST['old-login'])),ENT_QUOTES);
+            $newLogin = htmlspecialchars(strip_tags(trim($_POST['new-login'])),ENT_QUOTES); 
+            $oldMail = htmlspecialchars(strip_tags(trim(filter_var($_POST['old-mail'],FILTER_VALIDATE_EMAIL))),ENT_QUOTES);
+            $newMail = htmlspecialchars(strip_tags(trim(filter_var($_POST['new-mail'], FILTER_VALIDATE_EMAIL))),ENT_QUOTES);
+            $oldPassword = htmlspecialchars(strip_tags(trim($_POST['old-password'])),ENT_QUOTES);
+            $newPassword1 = htmlspecialchars(strip_tags(trim($_POST['new-password1'])),ENT_QUOTES); 
+            $newPassword2 = htmlspecialchars(strip_tags(trim($_POST['new-password2'])),ENT_QUOTES);
+
+            $userManager = new ManagerUser($db);
+            $usersByLogin = $userManager -> getOneById($oldLogin);       
+            if(!is_string($usersByLogin)){
+                if($oldMail === $usersByLogin->getMwMailUser() && password_verify($oldPassword, $usersByLogin->getMwPwdUser())){
+                    if($newPassword1 === $newPassword2){
+                        $newUserMapping = new MappingUser([
+                            'mwIdUser' => $usersByLogin -> getMwIdUser(),
+                            'mwLoginUser' => (empty($newLogin)) ? $usersByLogin -> getMwLoginUser() : $newLogin ,
+                            'mwMailUser' => (empty($newMail)) ? $usersByLogin -> getMwMailUser() : $newMail,
+                            'mwPwdUser' => (empty($newPassword1)) ? $oldPassword : $newPassword1, 
+                        ]);
+                        $userManager -> updateUser($newUserMapping);
+                        $response = "mise à jour";
+                        ?>
+                            <script>
+                                window.setTimeout(function() {
+                                    <?php $userManager -> disconnect(); ?>
+                                    window.location = './';
+                                }, 3000);
+                            </script>
+                        <?php
+
+                    } else {
+                        $response = "Les mots de passes ne correspondent pas, réessayez";
+                    }
+                } else {
+                    $response = "Mauvais login/mot de passe, réessayez";
+                }
+            } else {
+                $response = $usersByLogin;
+            }  
+        }
 
         // Si un photo est uploadée: 
         if(isset($_POST['submitPic'])){
