@@ -99,11 +99,11 @@ if(isset($_POST['name_contact'], $_POST['mail_contact'], $_POST['objet_contact']
         $response = "Un problème est survenu, réssayez !";
     }
     ?>
-        <!-- <script>
+        <script>
             window.setTimeout(function() {
                 window.location = './?p=contact';
             }, 3000);
-        </script> -->
+        </script>
     <?php
 }
    
@@ -301,7 +301,7 @@ if(isset($_POST['login'],$_POST['pwd'])){
 
         // INSERT SECTION :
         if(isset($_POST['section-insert-title'], $_POST['section-insert-content'], $_POST['section-insert-visible'], $_POST['section-insert-pic-title'], $_POST['section-insert-pic-url'])){
-
+            var_dump($_POST);
             $sectionInsertPicMap = new MappingPicture([
                 'mwTitlePicture' => $_POST['section-insert-pic-title'],
                 'mwUrlPicture' => $_POST['section-insert-pic-url'],
@@ -310,7 +310,7 @@ if(isset($_POST['login'],$_POST['pwd'])){
             $sectionInsertMap = new MappingSection([
                 'mwTitleSect' => $_POST['section-insert-title'],
                 'mwContentSect' => $_POST['section-insert-content'],
-                'mwVisible' => $_POST['section-insert-visible'],
+                'mwVisibleSect' => $_POST['section-insert-visible'],
             ]);
 
             $insertSection = $sectionManager -> insertSectionWithPic($sectionInsertPicMap, $sectionInsertMap);
@@ -503,6 +503,31 @@ if(isset($_POST['login'],$_POST['pwd'])){
             }
         }
 
+        // DELETE SECTION :
+        if(isset($_GET['section-delete']) && ctype_digit($_GET['section-delete'])){
+            $sectionId = (int) $_GET['section-delete']; 
+            $sectionById = $sectionManager-> getOneById($sectionId);
+            try {
+                $pictureDelete = $pictureManager->deletePicture($sectionById->getMwPictureMwIdPicture());
+                $sectionDelete = $sectionManager->deletesection($sectionId);
+            }catch(Exception $e){
+                $e -> getMessage();
+            }
+
+            if($sectionDelete){
+                $response = "Evenement : " . $sectionById -> getMwTitleSect() . " est effacé !";         
+            }else{
+                $response = "Un problème est survenu, réessayez !";
+            }
+            ?>
+                <script>
+                    window.setTimeout(function() {
+                        window.location = './?p=section';
+                    }, 3000);
+                </script>
+            <?php
+        }
+
         ### UPDATE DANS LA PAGE DIRECTEMENT : 
         // VALIDATION DES MESSAGES DU LIVRE D'OR:
         if(isset($_GET['valider']) && ctype_digit($_GET['valider'])){
@@ -667,6 +692,49 @@ if(isset($_POST['login'],$_POST['pwd'])){
                     <?php
                 }
                 include_once "../view/privateView/editView/agendaEdit.php";
+            }
+
+            // SECTION UPDATE
+            else if($_GET['p']==="section-update"){
+                if(isset($_GET['section-update']) && ctype_digit($_GET['section-update'])){
+                    $sectionId = (int) $_GET['section-update']; 
+                    $sectionById = $sectionManager -> getOneById($sectionId);
+                    $pictureBySectionId = $pictureManager -> getOneById($sectionById->getMwPictureMwIdPicture());
+                }
+
+                if(isset($_POST['mw_update_title_section'], $_POST['mw_update_content_section'], $_POST['mw_update_visible_section'])){
+                    
+                    $pictureUpdateMap = new MappingPicture([
+                        'mwTitlePicture' => $_POST['mw_update_title_pic'],
+                        'mwUrlPicture' => $_POST['mw_update_url_pic'],
+                        'mwIdPicture' =>  $pictureBySectionId -> getMwIdPicture(),
+                    ]);
+
+                    $sectionUpdateMap = new Mappingsection([
+                        'mwTitleSect' => $_POST['mw_update_title_section'],
+                        'mwContentSect' => $_POST['mw_update_content_section'],
+                        'mwVisibleSect' => $_POST['mw_update_visible_section'], 
+                        'mwPictureMwIdPicture' => $pictureBySectionId -> getMwIdPicture(),
+                        'mwIdSect' => $sectionId,
+                    ]);
+
+                    $updateSection = $sectionManager -> updateSectionWithPic($pictureUpdateMap, $sectionUpdateMap);
+
+                    if($updateSection){
+                        $response = "Section mis à jour !";
+                    } else {
+                        $response = "Un problème est survenu, réssayez !";
+                    }
+
+                    ?>
+                    <script>
+                        window.setTimeout(function() {
+                            window.location = './?p=section';
+                        }, 3000);
+                    </script>
+                    <?php
+                }
+                include_once "../view/privateView/editView/sectionEdit.php";
             }
             
             // ARTCILE UPDATE
