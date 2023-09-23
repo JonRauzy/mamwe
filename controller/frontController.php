@@ -330,7 +330,6 @@ if(isset($_POST['login'],$_POST['pwd'])){
 
             if($agendaDelete){
                 $response = "Evenement : " . $agendaById -> getMwTitleAgenda() . " est effacé !";         
-                echo $pictureDelete;     
             }else{
                 $response = "Un problème est survenu, réessayez !";
             }
