@@ -91,9 +91,20 @@ if(isset($_GET['deconnect'])){
     exit();
 }
 
-if(isset($_POST['name_contact'], $_POST['mail_contact'], $_POST['message_contact'])){
+if(isset($_POST['name_contact'], $_POST['mail_contact'], $_POST['objet_contact'], $_POST['message_contact'])){
     $mailSent = sendMail($_POST['name_contact'], $_POST['mail_contact'], $_POST['message_contact']);
-    // METTRE LE MAILSENT DANS LA REPONSE DE LA VUE
+    if($mailSent){
+        $response = "Evenement enregistrer !";
+    }else{
+        $response = "Un problème est survenu, réssayez !";
+    }
+    ?>
+        <script>
+            window.setTimeout(function() {
+                window.location = './?p=contact';
+            }, 3000);
+        </script>
+    <?php
 }
 
 // connection à l'admin
@@ -106,10 +117,12 @@ if(isset($_POST['login'],$_POST['pwd'])){
 
     if($connectUser){
         include_once '../view/privateView/admin.php';
-    }else{
-        $erreur = "Nom d'utilisateur ou mot de passe incorrect ! "; 
+    } else {
+        $response = "Nom d'utilisateur ou mot de passe incorrect ! "; 
+        include_once '../view/publicView/connectView.php';
     }
 }  
+
 #######################################################################
 
 
@@ -119,6 +132,47 @@ if(isset($_POST['login'],$_POST['pwd'])){
 
     // est-ce qu'on est connecté :
     else if(isset($_SESSION['idSession']) && $_SESSION['idSession']==session_id()){
+        if(isset($_POST['old-login'], $_POST['new-login'], $_POST['old-mail'], $_POST['new-mail'], $_POST['old-password'], $_POST['new-password1'], $_POST['new-password2'] )){
+            $oldLogin = htmlspecialchars(strip_tags(trim($_POST['old-login'])),ENT_QUOTES);
+            $newLogin = htmlspecialchars(strip_tags(trim($_POST['new-login'])),ENT_QUOTES); 
+            $oldMail = htmlspecialchars(strip_tags(trim(filter_var($_POST['old-mail'],FILTER_VALIDATE_EMAIL))),ENT_QUOTES);
+            $newMail = htmlspecialchars(strip_tags(trim(filter_var($_POST['new-mail'], FILTER_VALIDATE_EMAIL))),ENT_QUOTES);
+            $oldPassword = htmlspecialchars(strip_tags(trim($_POST['old-password'])),ENT_QUOTES);
+            $newPassword1 = htmlspecialchars(strip_tags(trim($_POST['new-password1'])),ENT_QUOTES); 
+            $newPassword2 = htmlspecialchars(strip_tags(trim($_POST['new-password2'])),ENT_QUOTES);
+
+            $userManager = new ManagerUser($db);
+            $usersByLogin = $userManager -> getOneById($oldLogin);       
+            if(!is_string($usersByLogin)){
+                if($oldMail === $usersByLogin->getMwMailUser() && password_verify($oldPassword, $usersByLogin->getMwPwdUser())){
+                    if($newPassword1 === $newPassword2){
+                        $newUserMapping = new MappingUser([
+                            'mwIdUser' => $usersByLogin -> getMwIdUser(),
+                            'mwLoginUser' => (empty($newLogin)) ? $usersByLogin -> getMwLoginUser() : $newLogin ,
+                            'mwMailUser' => (empty($newMail)) ? $usersByLogin -> getMwMailUser() : $newMail,
+                            'mwPwdUser' => (empty($newPassword1)) ? $oldPassword : $newPassword1, 
+                        ]);
+                        $userManager -> updateUser($newUserMapping);
+                        $response = "mise à jour";
+                        ?>
+                            <script>
+                                window.setTimeout(function() {
+                                    <?php $userManager -> disconnect(); ?>
+                                    window.location = './';
+                                }, 3000);
+                            </script>
+                        <?php
+
+                    } else {
+                        $response = "Les mots de passes ne correspondent pas, réessayez";
+                    }
+                } else {
+                    $response = "Mauvais login/mot de passe, réessayez";
+                }
+            } else {
+                $response = $usersByLogin;
+            }  
+        }
 
         // Si un photo est uploadée: 
         if(isset($_POST['submitPic'])){
@@ -288,7 +342,7 @@ if(isset($_POST['login'],$_POST['pwd'])){
 
         // INSERT SECTION :
         if(isset($_POST['section-insert-title'], $_POST['section-insert-content'], $_POST['section-insert-visible'], $_POST['section-insert-pic-title'], $_POST['section-insert-pic-url'])){
-
+            var_dump($_POST);
             $sectionInsertPicMap = new MappingPicture([
                 'mwTitlePicture' => $_POST['section-insert-pic-title'],
                 'mwUrlPicture' => $_POST['section-insert-pic-url'],
@@ -297,7 +351,7 @@ if(isset($_POST['login'],$_POST['pwd'])){
             $sectionInsertMap = new MappingSection([
                 'mwTitleSect' => $_POST['section-insert-title'],
                 'mwContentSect' => $_POST['section-insert-content'],
-                'mwVisible' => $_POST['section-insert-visible'],
+                'mwVisibleSect' => $_POST['section-insert-visible'],
             ]);
 
             $insertSection = $sectionManager -> insertSectionWithPic($sectionInsertPicMap, $sectionInsertMap);
@@ -489,6 +543,31 @@ if(isset($_POST['login'],$_POST['pwd'])){
             }
         }
 
+        // DELETE SECTION :
+        if(isset($_GET['section-delete']) && ctype_digit($_GET['section-delete'])){
+            $sectionId = (int) $_GET['section-delete']; 
+            $sectionById = $sectionManager-> getOneById($sectionId);
+            try {
+                $pictureDelete = $pictureManager->deletePicture($sectionById->getMwPictureMwIdPicture());
+                $sectionDelete = $sectionManager->deletesection($sectionId);
+            }catch(Exception $e){
+                $e -> getMessage();
+            }
+
+            if($sectionDelete){
+                $response = "Evenement : " . $sectionById -> getMwTitleSect() . " est effacé !";         
+            }else{
+                $response = "Un problème est survenu, réessayez !";
+            }
+            ?>
+                <script>
+                    window.setTimeout(function() {
+                        window.location = './?p=section';
+                    }, 3000);
+                </script>
+            <?php
+        }
+
         ### UPDATE DANS LA PAGE DIRECTEMENT : 
         // VALIDATION DES MESSAGES DU LIVRE D'OR:
         if(isset($_GET['valider']) && ctype_digit($_GET['valider'])){
@@ -653,6 +732,49 @@ if(isset($_POST['login'],$_POST['pwd'])){
                     <?php
                 }
                 include_once "../view/privateView/editView/agendaEdit.php";
+            }
+
+            // SECTION UPDATE
+            else if($_GET['p']==="section-update"){
+                if(isset($_GET['section-update']) && ctype_digit($_GET['section-update'])){
+                    $sectionId = (int) $_GET['section-update']; 
+                    $sectionById = $sectionManager -> getOneById($sectionId);
+                    $pictureBySectionId = $pictureManager -> getOneById($sectionById->getMwPictureMwIdPicture());
+                }
+
+                if(isset($_POST['mw_update_title_section'], $_POST['mw_update_content_section'], $_POST['mw_update_visible_section'])){
+                    
+                    $pictureUpdateMap = new MappingPicture([
+                        'mwTitlePicture' => $_POST['mw_update_title_pic'],
+                        'mwUrlPicture' => $_POST['mw_update_url_pic'],
+                        'mwIdPicture' =>  $pictureBySectionId -> getMwIdPicture(),
+                    ]);
+
+                    $sectionUpdateMap = new Mappingsection([
+                        'mwTitleSect' => $_POST['mw_update_title_section'],
+                        'mwContentSect' => $_POST['mw_update_content_section'],
+                        'mwVisibleSect' => $_POST['mw_update_visible_section'], 
+                        'mwPictureMwIdPicture' => $pictureBySectionId -> getMwIdPicture(),
+                        'mwIdSect' => $sectionId,
+                    ]);
+
+                    $updateSection = $sectionManager -> updateSectionWithPic($pictureUpdateMap, $sectionUpdateMap);
+
+                    if($updateSection){
+                        $response = "Section mis à jour !";
+                    } else {
+                        $response = "Un problème est survenu, réssayez !";
+                    }
+
+                    ?>
+                    <script>
+                        window.setTimeout(function() {
+                            window.location = './?p=section';
+                        }, 3000);
+                    </script>
+                    <?php
+                }
+                include_once "../view/privateView/editView/sectionEdit.php";
             }
             
             // ARTCILE UPDATE
